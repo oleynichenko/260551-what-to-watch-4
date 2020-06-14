@@ -1,18 +1,13 @@
-import React from "react";
 import ReactDOM from 'react-dom';
-import App from "./components/app/app.jsx";
-
-const movie = {
-  title: `The Grand Budapest Hotel`,
-  genre: `Drama`,
-  year: `2014`
-};
+import App from '@components/app/app';
+import {MainMovie, MOVIES} from './constants';
 
 ReactDOM.render(
     <App
-      movieTitle={movie.title}
-      movieGenre={movie.genre}
-      movieYear={movie.year}
+      movieTitle={MainMovie.TITLE}
+      movieGenre={MainMovie.GENRE}
+      movieYear={MainMovie.YEAR}
+      movies={MOVIES}
     />,
     document.querySelector(`#root`)
 );

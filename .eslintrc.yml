@@ -2,6 +2,7 @@ env:
   es6: true
   browser: true
   commonjs: true
+  jest: true
 
 extends: ['htmlacademy/es6', 'plugin:react/recommended']
 
@@ -24,5 +25,5 @@ globals:
   React: true
   PropTypes: true
   renderer: true
-  shallow: true
-  mount: true
+  Enzyme: true
+  Adapter: true

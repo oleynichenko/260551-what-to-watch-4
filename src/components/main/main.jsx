@@ -1,5 +1,5 @@
 const Main = (props) => {
-  const {title, year, genre, movies} = props;
+  const {title, year, genre, movies, onTitleClick} = props;
 
   return <>
     <section className="movie-card">
@@ -27,7 +27,10 @@ const Main = (props) => {
             <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327"/>
           </div>
           <div className="movie-card__desc">
-            <h2 className="movie-card__title">{title}</h2>
+            <h2
+              className="movie-card__title"
+              onClick={onTitleClick}>{title}
+            </h2>
             <p className="movie-card__meta">
               <span className="movie-card__genre">{genre}</span>
               <span className="movie-card__year">{year}</span>
@@ -121,7 +124,8 @@ Main.propTypes = {
   title: PropTypes.string.isRequired,
   genre: PropTypes.string.isRequired,
   year: PropTypes.number.isRequired,
-  movies: PropTypes.arrayOf(PropTypes.string)
+  movies: PropTypes.arrayOf(PropTypes.string),
+  onTitleClick: PropTypes.func.isRequired
 };
 
 export default Main;

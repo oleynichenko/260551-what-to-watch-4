@@ -1,5 +1,7 @@
 import Main from "@components/main/main";
 
+const onMovieTitleClick = () => {};
+
 const App = (props) => {
   const {movieTitle, movieGenre, movieYear, movies} = props;
 
@@ -8,6 +10,7 @@ const App = (props) => {
     genre={movieGenre}
     year={movieYear}
     movies={movies}
+    onTitleClick={onMovieTitleClick}
   />;
 };
 

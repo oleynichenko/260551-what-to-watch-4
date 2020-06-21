@@ -6,7 +6,24 @@ const Movie = {
   YEAR: 2014
 };
 
-const movies = [`Fantastic Beasts`, `Bohemian Rhapsody`, `Macbeth`];
+const movies = [
+  {
+    id: 1,
+    title: `Macbeth`,
+    image: `img/macbeth.jpg`,
+  },
+  {
+    id: 2,
+    title: `Aviator`,
+    image: `img/aviator.jpg`,
+  },
+  {
+    id: 3,
+    title: `We need to talk about Kevin`,
+    image: `img/we-need-to-talk-about-kevin.jpg`,
+  }
+];
+
 const onTitleClick = () => {};
 
 describe(`MainComponent`, () => {
@@ -17,7 +34,7 @@ describe(`MainComponent`, () => {
           genre={Movie.GENRE}
           year={Movie.YEAR}
           movies={movies}
-          onTitleClick={onTitleClick}
+          onMovieTitleClick={onTitleClick}
         />
     ).toJSON();
 

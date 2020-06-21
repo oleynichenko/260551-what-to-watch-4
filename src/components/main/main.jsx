@@ -1,5 +1,13 @@
+import MoviesList from "@components/movie-list/movie-list";
+
 const Main = (props) => {
-  const {title, year, genre, movies, onTitleClick} = props;
+  const {
+    title,
+    year,
+    genre,
+    movies,
+    onMovieTitleClick
+  } = props;
 
   return <>
     <section className="movie-card">
@@ -29,8 +37,7 @@ const Main = (props) => {
           <div className="movie-card__desc">
             <h2
               className="movie-card__title"
-              onClick={onTitleClick}>{title}
-            </h2>
+              onClick={onMovieTitleClick}>{title}</h2>
             <p className="movie-card__meta">
               <span className="movie-card__genre">{genre}</span>
               <span className="movie-card__year">{year}</span>
@@ -88,18 +95,10 @@ const Main = (props) => {
             <a href="#" className="catalog__genres-link">Thrillers</a>
           </li>
         </ul>
-        <div className="catalog__movies-list">
-          {movies.map((movie, index) => (
-            <article key={index} className="small-movie-card catalog__movies-card">
-              <div className="small-movie-card__image">
-                <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175"/>
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">{movie}</a>
-              </h3>
-            </article>
-          ))}
-        </div>
+        <MoviesList
+          moviesList={movies}
+          onMovieTitleClick={onMovieTitleClick}
+        />
         <div className="catalog__more">
           <button className="catalog__button" type="button">Show more</button>
         </div>
@@ -124,8 +123,12 @@ Main.propTypes = {
   title: PropTypes.string.isRequired,
   genre: PropTypes.string.isRequired,
   year: PropTypes.number.isRequired,
-  movies: PropTypes.arrayOf(PropTypes.string),
-  onTitleClick: PropTypes.func.isRequired
+  movies: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.number,
+    title: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+  })),
+  onMovieTitleClick: PropTypes.func.isRequired
 };
 
 export default Main;

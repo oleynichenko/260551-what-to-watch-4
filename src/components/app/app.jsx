@@ -10,7 +10,7 @@ const App = (props) => {
     genre={movieGenre}
     year={movieYear}
     movies={movies}
-    onTitleClick={onMovieTitleClick}
+    onMovieTitleClick={onMovieTitleClick}
   />;
 };
 
@@ -18,7 +18,11 @@ App.propTypes = {
   movieTitle: PropTypes.string.isRequired,
   movieGenre: PropTypes.string.isRequired,
   movieYear: PropTypes.number.isRequired,
-  movies: PropTypes.arrayOf(PropTypes.string)
+  movies: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.number,
+    title: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+  }))
 };
 
 export default App;

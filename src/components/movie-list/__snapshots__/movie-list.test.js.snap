@@ -7,15 +7,13 @@ exports[`should render MovieList with 3 movie cards 1`] = `
   <article
     className="small-movie-card catalog__movies-card"
     onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
     <div
       className="small-movie-card__image"
     >
-      <img
-        alt="Теория большого взрыва: Откровение ринита"
-        height="175"
-        src="path"
-        width="280"
+      <video
+        className="player__video"
       />
     </div>
     <h3
@@ -33,15 +31,13 @@ exports[`should render MovieList with 3 movie cards 1`] = `
   <article
     className="small-movie-card catalog__movies-card"
     onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
     <div
       className="small-movie-card__image"
     >
-      <img
-        alt="Звездный путь"
-        height="175"
-        src="path"
-        width="280"
+      <video
+        className="player__video"
       />
     </div>
     <h3
@@ -59,15 +55,13 @@ exports[`should render MovieList with 3 movie cards 1`] = `
   <article
     className="small-movie-card catalog__movies-card"
     onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
     <div
       className="small-movie-card__image"
     >
-      <img
-        alt="Рик и Морти: Риконечная Мортистория"
-        height="175"
-        src="path"
-        width="280"
+      <video
+        className="player__video"
       />
     </div>
     <h3

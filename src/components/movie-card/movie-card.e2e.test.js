@@ -4,6 +4,7 @@ const movie = {
   id: 1,
   title: `Теория большого взрыва: Откровение ринита`,
   image: `path`,
+  preview: `path`
 };
 
 describe(`MovieCard`, () => {
@@ -16,7 +17,9 @@ describe(`MovieCard`, () => {
           key={movie.id}
           movie={movie}
           onMovieCardMouseEnter={onMovieCardMouseEnter}
+          onMovieCardMouseLeave={() => {}}
           onMovieTitleClick={onMovieTitleClick}
+          isVideoPlaying={false}
         />
     );
 
@@ -30,6 +33,7 @@ describe(`MovieCard`, () => {
 
   it(`should handle click on movie title`, () => {
     const onMovieCardMouseEnter = jest.fn();
+    const onMovieCardMouseLeave = jest.fn();
     const onMovieTitleClick = jest.fn();
 
     const main = Enzyme.shallow(
@@ -37,7 +41,9 @@ describe(`MovieCard`, () => {
           key={movie.id}
           movie={movie}
           onMovieCardMouseEnter={onMovieCardMouseEnter}
+          onMovieCardMouseLeave={onMovieCardMouseLeave}
           onMovieTitleClick={onMovieTitleClick}
+          isVideoPlaying={false}
         />
     );
 

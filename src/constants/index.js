@@ -4,4 +4,6 @@ const MainMovie = {
   YEAR: 2014
 };
 
-export {MainMovie};
+const MOVIE_LAUNCH_DELAY = 1000;
+
+export {MainMovie, MOVIE_LAUNCH_DELAY};

@@ -1,21 +1,32 @@
+import VideoPlayer from "@components/video-player/video-player";
+
 const MovieCard = (props) => {
-  const {movie, onMovieCardMouseEnter, onMovieTitleClick} = props;
+  const {
+    movie,
+    onMovieTitleClick,
+    onMovieCardMouseEnter,
+    onMovieCardMouseLeave,
+    isVideoPlaying
+  } = props;
 
   return (
     <article
       className="small-movie-card catalog__movies-card"
-      onMouseEnter={() => {
-        onMovieCardMouseEnter(movie);
-      }}
+      onMouseEnter={() => onMovieCardMouseEnter(movie)}
+      onMouseLeave={() => onMovieCardMouseLeave()}
     >
       <div className="small-movie-card__image">
-        <img src={movie.image} alt={movie.title} width="280" height="175"/>
+        <VideoPlayer
+          isPlaying={isVideoPlaying}
+          poster={movie.image}
+          src={movie.preview}
+          isMuted={true}
+        />
       </div>
       <h3 className="small-movie-card__title" onClick={onMovieTitleClick}>
-        <a
-          className="small-movie-card__link"
-          href="movie-page.html"
-        >{movie.title}</a>
+        <a className="small-movie-card__link" href="movie-page.html">
+          {movie.title}
+        </a>
       </h3>
     </article>
   );
@@ -26,9 +37,12 @@ MovieCard.propTypes = {
     id: PropTypes.string.number,
     title: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
+    preview: PropTypes.string.isRequired,
   }),
   onMovieCardMouseEnter: PropTypes.func.isRequired,
-  onMovieTitleClick: PropTypes.func.isRequired
+  onMovieCardMouseLeave: PropTypes.func.isRequired,
+  onMovieTitleClick: PropTypes.func.isRequired,
+  isVideoPlaying: PropTypes.bool.isRequired
 };
 
 export default MovieCard;

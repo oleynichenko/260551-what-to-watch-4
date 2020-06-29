@@ -4,20 +4,18 @@ exports[`should render MovieCard with Big Bang Theory movie 1`] = `
 <article
   className="small-movie-card catalog__movies-card"
   onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
 >
   <div
     className="small-movie-card__image"
   >
-    <img
-      alt="Теория большого взрыва: Откровение ринита"
-      height="175"
-      src="path"
-      width="280"
+    <video
+      className="player__video"
     />
   </div>
   <h3
     className="small-movie-card__title"
-    onClick={[MockFunction]}
+    onClick={[Function]}
   >
     <a
       className="small-movie-card__link"

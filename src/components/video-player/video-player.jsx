@@ -47,9 +47,10 @@ class VideoPlayer extends React.PureComponent {
 
     if (isPlaying) {
       video.play();
-    } else {
-      video.load();
+      return;
     }
+
+    video.load();
   }
 
   render() {

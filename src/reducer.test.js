@@ -1,4 +1,6 @@
-export default [
+import {reducer, ActionType} from "./reducer.js";
+
+const movies = [
   {
     id: 1,
     title: `Macbeth`,
@@ -56,3 +58,57 @@ export default [
     preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
   }
 ];
+
+const genres = [`All genres`, ...new Set(
+    movies.reduce((res, movie) => {
+      if (movie.genres) {
+        res = res.concat(movie.genres);
+      }
+
+      return res;
+    }, [])
+)];
+
+describe(`Reducer`, () => {
+  it(`should return initial state`, () => {
+    expect(reducer(void 0, {})).toEqual({
+      allMovies: movies,
+      filteredMovies: movies,
+      genres,
+      activeGenre: `All genres`
+    });
+  });
+
+  it(`should set genre`, () => {
+    expect(reducer({
+      allMovies: movies,
+      filteredMovies: movies,
+      genres,
+      activeGenre: `All genres`
+    }, {
+      type: ActionType.SET_ACTIVE_GENRE,
+      payload: `Drama`,
+    })).toEqual({
+      allMovies: movies,
+      filteredMovies: movies,
+      genres,
+      activeGenre: `Drama`,
+    });
+  });
+
+  it(`should get films`, () => {
+    expect(reducer({
+      allMovies: movies,
+      filteredMovies: movies,
+      genres,
+      activeGenre: `Horror`,
+    }, {
+      type: ActionType.GET_FILTERED_MOVIES,
+    })).toEqual({
+      allMovies: movies,
+      filteredMovies: [movies[1]],
+      genres,
+      activeGenre: `Horror`,
+    });
+  });
+});

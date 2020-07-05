@@ -13,7 +13,7 @@ const MovieCard = (props) => {
     <article
       className="small-movie-card catalog__movies-card"
       onMouseEnter={() => onMovieCardMouseEnter(movie)}
-      onMouseLeave={() => onMovieCardMouseLeave()}
+      onMouseLeave={onMovieCardMouseLeave}
     >
       <div className="small-movie-card__image">
         <VideoPlayer

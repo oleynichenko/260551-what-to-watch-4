@@ -95,7 +95,6 @@ Main.propTypes = {
   onMovieTitleClick: PropTypes.func.isRequired
 };
 
-
 const mapStateToProps = (state) => {
   return state;
 };

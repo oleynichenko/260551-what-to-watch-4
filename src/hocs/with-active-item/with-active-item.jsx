@@ -25,7 +25,7 @@ const withActiveItem = (Component) => {
         <Component
           {...this.props}
           activeItem={activeItem}
-          onItemClick={this._setActiveItem}
+          onItemAction={this._setActiveItem}
         />
       );
     }

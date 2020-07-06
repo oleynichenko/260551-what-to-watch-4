@@ -1,6 +1,9 @@
 import MoviesList from "@components/movie-list/movie-list";
 import GenreList from "@components/genre-list/genre-list";
 import {connect} from "react-redux";
+import withActiveItem from "../../hocs/with-active-item/with-active-item";
+
+const MoviesListWrapped = withActiveItem(MoviesList);
 
 const Main = (props) => {
   const {
@@ -65,7 +68,7 @@ const Main = (props) => {
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
         <GenreList />
-        <MoviesList
+        <MoviesListWrapped
           onMovieTitleClick={onMovieTitleClick}
         />
         <div className="catalog__more">

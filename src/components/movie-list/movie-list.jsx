@@ -6,7 +6,6 @@ class MoviesList extends React.PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = {activeCard: null};
     this._timerId = null;
 
     this._onMovieCardMouseEnter = this._onMovieCardMouseEnter.bind(this);
@@ -18,22 +17,24 @@ class MoviesList extends React.PureComponent {
   }
 
   _onMovieCardMouseEnter(movie) {
+    const {onItemAction} = this.props;
+
     clearTimeout(this._timerId);
 
     this._timerId = setTimeout(() => {
-      this.setState({activeCard: movie});
+      onItemAction(movie);
     }, MOVIE_LAUNCH_DELAY);
   }
 
   _onMovieCardMouseLeave() {
-    clearTimeout(this._timerId);
+    const {onItemAction} = this.props;
 
-    this.setState({activeCard: null});
+    clearTimeout(this._timerId);
+    onItemAction();
   }
 
   render() {
-    const {movies, onMovieTitleClick} = this.props;
-    const {activeCard} = this.state;
+    const {movies, onMovieTitleClick, activeItem} = this.props;
 
     return <>
       <div className="catalog__movies-list">
@@ -46,7 +47,7 @@ class MoviesList extends React.PureComponent {
                 onMovieCardMouseEnter={this._onMovieCardMouseEnter}
                 onMovieCardMouseLeave={this._onMovieCardMouseLeave}
                 onMovieTitleClick={onMovieTitleClick}
-                isVideoPlaying={movie === activeCard}
+                isVideoPlaying={movie === activeItem}
               />
             );
           })
@@ -67,6 +68,14 @@ MoviesList.propTypes = {
       })
   ),
   onMovieTitleClick: PropTypes.func.isRequired,
+  onItemAction: PropTypes.func.isRequired,
+  activeItem: PropTypes.shape({
+    id: PropTypes.string.number,
+    title: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    preview: PropTypes.string.isRequired,
+    genres: PropTypes.arrayOf(PropTypes.string).isRequired,
+  })
 };
 
 const mapStateToProps = (state) => ({

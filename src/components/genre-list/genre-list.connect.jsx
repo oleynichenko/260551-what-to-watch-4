@@ -1,4 +1,4 @@
-import {ActionCreator} from "../../reducer";
+import {ActionCreator} from "../../store/actions";
 import {connect} from "react-redux";
 import GenreList from "@components/genre-list/genre-list";
 

@@ -1,4 +1,5 @@
-import {reducer, ActionType} from "./reducer.js";
+import reducer from "./reducer.js";
+import {ActionType} from "./actions.js";
 
 const movies = [
   {
@@ -72,8 +73,7 @@ const genres = [`All genres`, ...new Set(
 describe(`Reducer`, () => {
   it(`should return initial state`, () => {
     expect(reducer(void 0, {})).toEqual({
-      allMovies: movies,
-      filteredMovies: movies,
+      movies,
       genres,
       activeGenre: `All genres`
     });
@@ -81,34 +81,16 @@ describe(`Reducer`, () => {
 
   it(`should set genre`, () => {
     expect(reducer({
-      allMovies: movies,
-      filteredMovies: movies,
+      movies,
       genres,
       activeGenre: `All genres`
     }, {
       type: ActionType.SET_ACTIVE_GENRE,
       payload: `Drama`,
     })).toEqual({
-      allMovies: movies,
-      filteredMovies: movies,
+      movies,
       genres,
       activeGenre: `Drama`,
-    });
-  });
-
-  it(`should get films`, () => {
-    expect(reducer({
-      allMovies: movies,
-      filteredMovies: movies,
-      genres,
-      activeGenre: `Horror`,
-    }, {
-      type: ActionType.GET_FILTERED_MOVIES,
-    })).toEqual({
-      allMovies: movies,
-      filteredMovies: [movies[1]],
-      genres,
-      activeGenre: `Horror`,
     });
   });
 });

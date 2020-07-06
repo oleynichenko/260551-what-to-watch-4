@@ -3,7 +3,7 @@ import {createStore} from "redux";
 import {Provider} from "react-redux";
 import App from '@components/app/app.connect';
 import {MainMovie} from './constants';
-import {reducer} from "./reducer.js";
+import reducer from "./store/reducer.js";
 
 const store = createStore(
     reducer,

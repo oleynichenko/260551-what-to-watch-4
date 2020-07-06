@@ -37,8 +37,7 @@ const mockStore = configureStore([]);
 describe(`AppComponent`, () => {
   it(`should render App`, () => {
     const store = mockStore({
-      allMovies: movies,
-      filteredMovies: movies,
+      movies,
       genres: [`All genres`, `Drama`, `Kids & Family`],
       activeGenre: `All genres`
     });

@@ -1,4 +1,4 @@
-import {GenreList} from "@components/genre-list/genre-list";
+import GenreList from "@components/genre-list/genre-list";
 
 const genres = [`Drama`, `Horror`, `Kids & Family`];
 

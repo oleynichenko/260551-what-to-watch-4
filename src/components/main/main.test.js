@@ -1,4 +1,4 @@
-import {Main} from "./main";
+import Main from "./main";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 

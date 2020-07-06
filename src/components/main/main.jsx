@@ -1,6 +1,5 @@
-import MoviesList from "@components/movie-list/movie-list";
-import GenreList from "@components/genre-list/genre-list";
-import {connect} from "react-redux";
+import MoviesList from "@components/movie-list/movie-list.connect";
+import GenreList from "@components/genre-list/genre-list.connect";
 import withActiveItem from "../../hocs/with-active-item/with-active-item";
 
 const MoviesListWrapped = withActiveItem(MoviesList);
@@ -93,9 +92,4 @@ Main.propTypes = {
   year: PropTypes.number.isRequired
 };
 
-const mapStateToProps = (state) => {
-  return state;
-};
-
-export {Main};
-export default connect(mapStateToProps)(Main);
+export default Main;

@@ -1,6 +1,5 @@
-import Main from "@components/main/main";
+import Main from "@components/main/main.connect";
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import {connect} from "react-redux";
 import MoviePage from "@components/movie-page/movie-page";
 
 class App extends React.PureComponent {
@@ -40,9 +39,4 @@ App.propTypes = {
   movieYear: PropTypes.number.isRequired,
 };
 
-const mapStateToProps = (state) => {
-  return state;
-};
-
-export {App};
-export default connect(mapStateToProps)(App);
+export default App;

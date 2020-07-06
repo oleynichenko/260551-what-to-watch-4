@@ -1,6 +1,5 @@
 import MovieCard from '../movie-card/movie-card';
 import {MOVIE_LAUNCH_DELAY} from "../../constants";
-import {connect} from "react-redux";
 
 class MoviesList extends React.PureComponent {
   constructor(props) {
@@ -76,9 +75,5 @@ MoviesList.propTypes = {
   })
 };
 
-const mapStateToProps = (state) => ({
-  movies: state.filteredMovies
-});
+export default MoviesList;
 
-export {MoviesList};
-export default connect(mapStateToProps)(MoviesList);

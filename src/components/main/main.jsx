@@ -1,11 +1,12 @@
 import MoviesList from "@components/movie-list/movie-list";
+import GenreList from "@components/genre-list/genre-list";
+import {connect} from "react-redux";
 
 const Main = (props) => {
   const {
     title,
     year,
     genre,
-    movies,
     onMovieTitleClick
   } = props;
 
@@ -45,13 +46,13 @@ const Main = (props) => {
             <div className="movie-card__buttons">
               <button className="btn btn--play movie-card__button" type="button">
                 <svg viewBox="0 0 19 19" width="19" height="19">
-                  <use xlinkHref="#play-s"></use>
+                  <use xlinkHref="#play-s"/>
                 </svg>
                 <span>Play</span>
               </button>
               <button className="btn btn--list movie-card__button" type="button">
                 <svg viewBox="0 0 19 20" width="19" height="20">
-                  <use xlinkHref="#add"></use>
+                  <use xlinkHref="#add"/>
                 </svg>
                 <span>My list</span>
               </button>
@@ -63,40 +64,8 @@ const Main = (props) => {
     <div className="page-content">
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
-        <ul className="catalog__genres-list">
-          <li className="catalog__genres-item catalog__genres-item--active">
-            <a href="#" className="catalog__genres-link">All genres</a>
-          </li>
-          <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Comedies</a>
-          </li>
-          <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Crime</a>
-          </li>
-          <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Documentary</a>
-          </li>
-          <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Dramas</a>
-          </li>
-          <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Horror</a>
-          </li>
-          <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Kids & Family</a>
-          </li>
-          <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Romance</a>
-          </li>
-          <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Sci-Fi</a>
-          </li>
-          <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Thrillers</a>
-          </li>
-        </ul>
+        <GenreList />
         <MoviesList
-          moviesList={movies}
           onMovieTitleClick={onMovieTitleClick}
         />
         <div className="catalog__more">
@@ -123,12 +92,13 @@ Main.propTypes = {
   title: PropTypes.string.isRequired,
   genre: PropTypes.string.isRequired,
   year: PropTypes.number.isRequired,
-  movies: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.number,
-    title: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-  })),
   onMovieTitleClick: PropTypes.func.isRequired
 };
 
-export default Main;
+
+const mapStateToProps = (state) => {
+  return state;
+};
+
+export {Main};
+export default connect(mapStateToProps)(Main);

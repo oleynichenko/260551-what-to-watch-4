@@ -1,4 +1,6 @@
-import App from "./app";
+import {App} from "./app";
+import {Provider} from "react-redux";
+import configureStore from "redux-mock-store";
 
 const Movie = {
   TITLE: `The Grand Budapest Hotel`,
@@ -9,33 +11,46 @@ const Movie = {
 const movies = [
   {
     id: 1,
-    title: `Macbeth`,
-    image: `img/macbeth.jpg`,
-    preview: `path`
+    title: `Теория большого взрыва: Откровение ринита`,
+    image: `path`,
+    preview: `path`,
+    genres: [`Drama`, `Kids & Family`],
   },
   {
     id: 2,
-    title: `Aviator`,
-    image: `img/aviator.jpg`,
-    preview: `path`
+    title: `Звездный путь`,
+    image: `path`,
+    preview: `path`,
+    genres: [`Drama`, `Kids & Family`],
   },
   {
     id: 3,
-    title: `We need to talk about Kevin`,
-    image: `img/we-need-to-talk-about-kevin.jpg`,
-    preview: `path`
-  }
+    title: `Рик и Морти: Риконечная Мортистория`,
+    image: `path`,
+    preview: `path`,
+    genres: [`Drama`, `Kids & Family`],
+  },
 ];
+
+const mockStore = configureStore([]);
 
 describe(`AppComponent`, () => {
   it(`should render App`, () => {
+    const store = mockStore({
+      allMovies: movies,
+      filteredMovies: movies,
+      genres: [`All genres`, `Drama`, `Kids & Family`],
+      activeGenre: `All genres`
+    });
+
     const tree = renderer.create(
-        <App
-          movieTitle={Movie.TITLE}
-          movieGenre={Movie.GENRE}
-          movieYear={Movie.YEAR}
-          movies={movies}
-        />,
+        <Provider store={store}>
+          <App
+            movieTitle={Movie.TITLE}
+            movieGenre={Movie.GENRE}
+            movieYear={Movie.YEAR}
+          />
+        </Provider>,
         {
           createNodeMock: () => {
             return {};

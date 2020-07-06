@@ -1,5 +1,6 @@
 import MovieCard from '../movie-card/movie-card';
 import {MOVIE_LAUNCH_DELAY} from "../../constants";
+import {connect} from "react-redux";
 
 class MoviesList extends React.PureComponent {
   constructor(props) {
@@ -31,13 +32,13 @@ class MoviesList extends React.PureComponent {
   }
 
   render() {
-    const {moviesList, onMovieTitleClick} = this.props;
+    const {movies, onMovieTitleClick} = this.props;
     const {activeCard} = this.state;
 
     return <>
       <div className="catalog__movies-list">
         {
-          moviesList.map((movie) => {
+          movies.map((movie) => {
             return (
               <MovieCard
                 key={movie.id}
@@ -56,15 +57,21 @@ class MoviesList extends React.PureComponent {
 }
 
 MoviesList.propTypes = {
-  moviesList: PropTypes.arrayOf(
+  movies: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.string.number,
         title: PropTypes.string.isRequired,
         image: PropTypes.string.isRequired,
         preview: PropTypes.string.isRequired,
+        genres: PropTypes.arrayOf(PropTypes.string).isRequired,
       })
   ),
   onMovieTitleClick: PropTypes.func.isRequired,
 };
 
-export default MoviesList;
+const mapStateToProps = (state) => ({
+  movies: state.filteredMovies
+});
+
+export {MoviesList};
+export default connect(mapStateToProps)(MoviesList);

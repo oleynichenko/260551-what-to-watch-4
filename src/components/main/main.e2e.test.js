@@ -1,4 +1,6 @@
 import Main from './main';
+import {Provider} from "react-redux";
+import configureStore from "redux-mock-store";
 
 Enzyme.configure({
   adapter: new Adapter(),
@@ -13,36 +15,49 @@ const Movie = {
 const movies = [
   {
     id: 1,
-    title: `Macbeth`,
-    image: `img/macbeth.jpg`,
-    preview: `path`
+    title: `Теория большого взрыва: Откровение ринита`,
+    image: `path`,
+    preview: `path`,
+    genres: [`Drama`, `Kids & Family`],
   },
   {
     id: 2,
-    title: `Aviator`,
-    image: `img/aviator.jpg`,
-    preview: `path`
+    title: `Звездный путь`,
+    image: `path`,
+    preview: `path`,
+    genres: [`Drama`, `Kids & Family`],
   },
   {
     id: 3,
-    title: `We need to talk about Kevin`,
-    image: `img/we-need-to-talk-about-kevin.jpg`,
-    preview: `path`
-  }
+    title: `Рик и Морти: Риконечная Мортистория`,
+    image: `path`,
+    preview: `path`,
+    genres: [`Drama`, `Kids & Family`],
+  },
 ];
+
+const mockStore = configureStore([]);
 
 describe(`MainComponent`, () => {
   it(`should handle click on main movie title`, () => {
     const onTitleClick = jest.fn();
 
-    const main = Enzyme.shallow(
-        <Main
-          title={Movie.TITLE}
-          genre={Movie.GENRE}
-          year={Movie.YEAR}
-          movies={movies}
-          onMovieTitleClick={onTitleClick}
-        />
+    const store = mockStore({
+      allMovies: movies,
+      filteredMovies: movies,
+      genres: [`All genres`, `Drama`, `Kids & Family`],
+      activeGenre: `All genres`
+    });
+
+    const main = Enzyme.mount(
+        <Provider store={store}>
+          <Main
+            title={Movie.TITLE}
+            genre={Movie.GENRE}
+            year={Movie.YEAR}
+            onMovieTitleClick={onTitleClick}
+          />
+        </Provider>
     );
 
     const title = main.find(`h2.movie-card__title`);

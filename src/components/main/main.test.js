@@ -1,4 +1,6 @@
-import Main from "./main";
+import {Main} from "./main";
+import configureStore from "redux-mock-store";
+import {Provider} from "react-redux";
 
 const Movie = {
   TITLE: `The Grand Budapest Hotel`,
@@ -9,36 +11,48 @@ const Movie = {
 const movies = [
   {
     id: 1,
-    title: `Macbeth`,
-    image: `img/macbeth.jpg`,
-    preview: `path`
+    title: `Теория большого взрыва: Откровение ринита`,
+    image: `path`,
+    preview: `path`,
+    genres: [`Drama`, `Kids & Family`],
   },
   {
     id: 2,
-    title: `Aviator`,
-    image: `img/aviator.jpg`,
-    preview: `path`
+    title: `Звездный путь`,
+    image: `path`,
+    preview: `path`,
+    genres: [`Drama`, `Kids & Family`],
   },
   {
     id: 3,
-    title: `We need to talk about Kevin`,
-    image: `img/we-need-to-talk-about-kevin.jpg`,
-    preview: `path`
-  }
+    title: `Рик и Морти: Риконечная Мортистория`,
+    image: `path`,
+    preview: `path`,
+    genres: [`Drama`, `Kids & Family`],
+  },
 ];
 
+const mockStore = configureStore([]);
 const onTitleClick = () => {};
 
 describe(`MainComponent`, () => {
+  const store = mockStore({
+    allMovies: movies,
+    filteredMovies: movies,
+    genres: [`All genres`, `Drama`, `Kids & Family`],
+    activeGenre: `All genres`
+  });
+
   it(`should render Main`, () => {
     const tree = renderer.create(
-        <Main
-          title={Movie.TITLE}
-          genre={Movie.GENRE}
-          year={Movie.YEAR}
-          movies={movies}
-          onMovieTitleClick={onTitleClick}
-        />,
+        <Provider store={store}>
+          <Main
+            title={Movie.TITLE}
+            genre={Movie.GENRE}
+            year={Movie.YEAR}
+            onMovieTitleClick={onTitleClick}
+          />
+        </Provider>,
         {
           createNodeMock: () => {
             return {};

@@ -13,7 +13,6 @@ it(`should render MovieCard with Big Bang Theory movie`, () => {
         movie={movie}
         onMovieCardMouseEnter={() => {}}
         onMovieCardMouseLeave={() => {}}
-        onMovieTitleClick={() => {}}
         isVideoPlaying={false}
       />,
       {

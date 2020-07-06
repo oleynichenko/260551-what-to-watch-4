@@ -18,7 +18,6 @@ exports[`should render MovieList with 3 movie cards 1`] = `
     </div>
     <h3
       className="small-movie-card__title"
-      onClick={[MockFunction]}
     >
       <a
         className="small-movie-card__link"
@@ -42,7 +41,6 @@ exports[`should render MovieList with 3 movie cards 1`] = `
     </div>
     <h3
       className="small-movie-card__title"
-      onClick={[MockFunction]}
     >
       <a
         className="small-movie-card__link"
@@ -66,7 +64,6 @@ exports[`should render MovieList with 3 movie cards 1`] = `
     </div>
     <h3
       className="small-movie-card__title"
-      onClick={[MockFunction]}
     >
       <a
         className="small-movie-card__link"

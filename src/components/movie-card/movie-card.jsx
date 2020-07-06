@@ -3,7 +3,6 @@ import VideoPlayer from "@components/video-player/video-player";
 const MovieCard = (props) => {
   const {
     movie,
-    onMovieTitleClick,
     onMovieCardMouseEnter,
     onMovieCardMouseLeave,
     isVideoPlaying
@@ -23,7 +22,7 @@ const MovieCard = (props) => {
           isMuted={true}
         />
       </div>
-      <h3 className="small-movie-card__title" onClick={onMovieTitleClick}>
+      <h3 className="small-movie-card__title">
         <a className="small-movie-card__link" href="movie-page.html">
           {movie.title}
         </a>
@@ -41,7 +40,6 @@ MovieCard.propTypes = {
   }),
   onMovieCardMouseEnter: PropTypes.func.isRequired,
   onMovieCardMouseLeave: PropTypes.func.isRequired,
-  onMovieTitleClick: PropTypes.func.isRequired,
   isVideoPlaying: PropTypes.bool.isRequired
 };
 

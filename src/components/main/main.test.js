@@ -33,7 +33,6 @@ const movies = [
 ];
 
 const mockStore = configureStore([]);
-const onTitleClick = () => {};
 
 describe(`MainComponent`, () => {
   const store = mockStore({
@@ -50,7 +49,6 @@ describe(`MainComponent`, () => {
             title={Movie.TITLE}
             genre={Movie.GENRE}
             year={Movie.YEAR}
-            onMovieTitleClick={onTitleClick}
           />
         </Provider>,
         {

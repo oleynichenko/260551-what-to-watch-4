@@ -34,7 +34,7 @@ class MoviesList extends React.PureComponent {
   }
 
   render() {
-    const {movies, onMovieTitleClick, activeItem} = this.props;
+    const {movies, activeItem} = this.props;
 
     return <>
       <div className="catalog__movies-list">
@@ -46,7 +46,6 @@ class MoviesList extends React.PureComponent {
                 movie={movie}
                 onMovieCardMouseEnter={this._onMovieCardMouseEnter}
                 onMovieCardMouseLeave={this._onMovieCardMouseLeave}
-                onMovieTitleClick={onMovieTitleClick}
                 isVideoPlaying={movie === activeItem}
               />
             );
@@ -67,7 +66,6 @@ MoviesList.propTypes = {
         genres: PropTypes.arrayOf(PropTypes.string).isRequired,
       })
   ),
-  onMovieTitleClick: PropTypes.func.isRequired,
   onItemAction: PropTypes.func.isRequired,
   activeItem: PropTypes.shape({
     id: PropTypes.string.number,

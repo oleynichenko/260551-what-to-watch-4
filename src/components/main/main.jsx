@@ -9,8 +9,7 @@ const Main = (props) => {
   const {
     title,
     year,
-    genre,
-    onMovieTitleClick
+    genre
   } = props;
 
   return <>
@@ -40,8 +39,7 @@ const Main = (props) => {
           </div>
           <div className="movie-card__desc">
             <h2
-              className="movie-card__title"
-              onClick={onMovieTitleClick}>{title}</h2>
+              className="movie-card__title">{title}</h2>
             <p className="movie-card__meta">
               <span className="movie-card__genre">{genre}</span>
               <span className="movie-card__year">{year}</span>
@@ -68,9 +66,7 @@ const Main = (props) => {
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
         <GenreList />
-        <MoviesListWrapped
-          onMovieTitleClick={onMovieTitleClick}
-        />
+        <MoviesListWrapped />
         <div className="catalog__more">
           <button className="catalog__button" type="button">Show more</button>
         </div>
@@ -94,8 +90,7 @@ const Main = (props) => {
 Main.propTypes = {
   title: PropTypes.string.isRequired,
   genre: PropTypes.string.isRequired,
-  year: PropTypes.number.isRequired,
-  onMovieTitleClick: PropTypes.func.isRequired
+  year: PropTypes.number.isRequired
 };
 
 const mapStateToProps = (state) => {

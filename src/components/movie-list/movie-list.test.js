@@ -25,14 +25,11 @@ const movies = [
 ];
 
 it(`should render MovieList with 3 movie cards`, () => {
-  const onMovieTitleClick = jest.fn();
-
   const tree = renderer.create(
       <MoviesList
         movies={movies}
         activeItem={movies[0]}
         onItemAction={() => {}}
-        onMovieTitleClick={onMovieTitleClick}
       />,
       {
         createNodeMock: () => {

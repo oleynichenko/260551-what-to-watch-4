@@ -1,12 +1,11 @@
 import MovieCard from '../movie-card/movie-card';
 import {MOVIE_LAUNCH_DELAY} from "../../constants";
-import {connect} from "react-redux";
+import {shortMovieType} from "../../types";
 
 class MoviesList extends React.PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = {activeCard: null};
     this._timerId = null;
 
     this._onMovieCardMouseEnter = this._onMovieCardMouseEnter.bind(this);
@@ -18,22 +17,24 @@ class MoviesList extends React.PureComponent {
   }
 
   _onMovieCardMouseEnter(movie) {
+    const {onItemAction} = this.props;
+
     clearTimeout(this._timerId);
 
     this._timerId = setTimeout(() => {
-      this.setState({activeCard: movie});
+      onItemAction(movie);
     }, MOVIE_LAUNCH_DELAY);
   }
 
   _onMovieCardMouseLeave() {
-    clearTimeout(this._timerId);
+    const {onItemAction} = this.props;
 
-    this.setState({activeCard: null});
+    clearTimeout(this._timerId);
+    onItemAction();
   }
 
   render() {
-    const {movies, onMovieTitleClick} = this.props;
-    const {activeCard} = this.state;
+    const {movies, activeItem} = this.props;
 
     return <>
       <div className="catalog__movies-list">
@@ -45,8 +46,7 @@ class MoviesList extends React.PureComponent {
                 movie={movie}
                 onMovieCardMouseEnter={this._onMovieCardMouseEnter}
                 onMovieCardMouseLeave={this._onMovieCardMouseLeave}
-                onMovieTitleClick={onMovieTitleClick}
-                isVideoPlaying={movie === activeCard}
+                isVideoPlaying={movie === activeItem}
               />
             );
           })
@@ -57,21 +57,9 @@ class MoviesList extends React.PureComponent {
 }
 
 MoviesList.propTypes = {
-  movies: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string.number,
-        title: PropTypes.string.isRequired,
-        image: PropTypes.string.isRequired,
-        preview: PropTypes.string.isRequired,
-        genres: PropTypes.arrayOf(PropTypes.string).isRequired,
-      })
-  ),
-  onMovieTitleClick: PropTypes.func.isRequired,
+  movies: PropTypes.arrayOf(shortMovieType).isRequired,
+  onItemAction: PropTypes.func.isRequired,
+  activeItem: shortMovieType
 };
 
-const mapStateToProps = (state) => ({
-  movies: state.filteredMovies
-});
-
-export {MoviesList};
-export default connect(mapStateToProps)(MoviesList);
+export default MoviesList;

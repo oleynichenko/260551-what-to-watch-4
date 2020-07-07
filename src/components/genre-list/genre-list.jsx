@@ -1,6 +1,3 @@
-import {connect} from "react-redux";
-import {ActionCreator} from "../../reducer.js";
-
 const GenreList = (props) => {
   const {genres, activeGenre, onGenreChange} = props;
 
@@ -31,17 +28,5 @@ GenreList.propTypes = {
   onGenreChange: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  genres: state.genres,
-  activeGenre: state.activeGenre
-});
 
-const mapDispatchToProps = (dispatch) => ({
-  onGenreChange(genre) {
-    dispatch(ActionCreator.setActiveGenre(genre));
-    dispatch(ActionCreator.getFilteredMovies());
-  },
-});
-
-export {GenreList};
-export default connect(mapStateToProps, mapDispatchToProps)(GenreList);
+export default GenreList;

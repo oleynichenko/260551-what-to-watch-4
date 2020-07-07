@@ -1,4 +1,4 @@
-import {App} from "./app";
+import App from "./app";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 
@@ -37,8 +37,7 @@ const mockStore = configureStore([]);
 describe(`AppComponent`, () => {
   it(`should render App`, () => {
     const store = mockStore({
-      allMovies: movies,
-      filteredMovies: movies,
+      movies,
       genres: [`All genres`, `Drama`, `Kids & Family`],
       activeGenre: `All genres`
     });

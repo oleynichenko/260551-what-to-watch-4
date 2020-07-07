@@ -1,9 +1,9 @@
 import VideoPlayer from "@components/video-player/video-player";
+import {shortMovieType} from "../../types";
 
 const MovieCard = (props) => {
   const {
     movie,
-    onMovieTitleClick,
     onMovieCardMouseEnter,
     onMovieCardMouseLeave,
     isVideoPlaying
@@ -13,7 +13,7 @@ const MovieCard = (props) => {
     <article
       className="small-movie-card catalog__movies-card"
       onMouseEnter={() => onMovieCardMouseEnter(movie)}
-      onMouseLeave={() => onMovieCardMouseLeave()}
+      onMouseLeave={onMovieCardMouseLeave}
     >
       <div className="small-movie-card__image">
         <VideoPlayer
@@ -23,7 +23,7 @@ const MovieCard = (props) => {
           isMuted={true}
         />
       </div>
-      <h3 className="small-movie-card__title" onClick={onMovieTitleClick}>
+      <h3 className="small-movie-card__title">
         <a className="small-movie-card__link" href="movie-page.html">
           {movie.title}
         </a>
@@ -33,15 +33,9 @@ const MovieCard = (props) => {
 };
 
 MovieCard.propTypes = {
-  movie: PropTypes.shape({
-    id: PropTypes.string.number,
-    title: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    preview: PropTypes.string.isRequired,
-  }),
+  movie: shortMovieType.isRequired,
   onMovieCardMouseEnter: PropTypes.func.isRequired,
   onMovieCardMouseLeave: PropTypes.func.isRequired,
-  onMovieTitleClick: PropTypes.func.isRequired,
   isVideoPlaying: PropTypes.bool.isRequired
 };
 

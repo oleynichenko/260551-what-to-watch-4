@@ -1,4 +1,4 @@
-import {MoviesList} from './movie-list.jsx';
+import MoviesList from './movie-list.jsx';
 
 const movies = [
   {
@@ -25,20 +25,18 @@ const movies = [
 ];
 
 it(`should render MovieList with 3 movie cards`, () => {
-  const onMovieTitleClick = jest.fn();
-
-  const tree = renderer
-    .create(
-        <MoviesList
-          movies={movies}
-          onMovieTitleClick={onMovieTitleClick}
-        />,
-        {
-          createNodeMock: () => {
-            return {};
-          }
+  const tree = renderer.create(
+      <MoviesList
+        movies={movies}
+        activeItem={movies[0]}
+        onItemAction={() => {}}
+      />,
+      {
+        createNodeMock: () => {
+          return {};
         }
-    ).toJSON();
+      }
+  ).toJSON();
 
   expect(tree).toMatchSnapshot();
 });

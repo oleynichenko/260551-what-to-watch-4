@@ -1,4 +1,7 @@
-export default [
+import reducer from "./reducer.js";
+import {ActionType} from "./actions.js";
+
+const movies = [
   {
     id: 1,
     title: `Macbeth`,
@@ -290,3 +293,38 @@ export default [
     ],
   },
 ];
+
+const genres = [`All genres`, ...new Set(
+    movies.reduce((res, movie) => {
+      if (movie.genres) {
+        res = res.concat(movie.genres);
+      }
+
+      return res;
+    }, [])
+)];
+
+describe(`Reducer`, () => {
+  it(`should return initial state`, () => {
+    expect(reducer(void 0, {})).toEqual({
+      movies,
+      genres,
+      activeGenre: `All genres`
+    });
+  });
+
+  it(`should set genre`, () => {
+    expect(reducer({
+      movies,
+      genres,
+      activeGenre: `All genres`
+    }, {
+      type: ActionType.SET_ACTIVE_GENRE,
+      payload: `Drama`,
+    })).toEqual({
+      movies,
+      genres,
+      activeGenre: `Drama`,
+    });
+  });
+});

@@ -1,4 +1,4 @@
-import {Main} from "./main";
+import Main from "./main";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 
@@ -33,12 +33,10 @@ const movies = [
 ];
 
 const mockStore = configureStore([]);
-const onTitleClick = () => {};
 
 describe(`MainComponent`, () => {
   const store = mockStore({
-    allMovies: movies,
-    filteredMovies: movies,
+    movies,
     genres: [`All genres`, `Drama`, `Kids & Family`],
     activeGenre: `All genres`
   });
@@ -50,7 +48,6 @@ describe(`MainComponent`, () => {
             title={Movie.TITLE}
             genre={Movie.GENRE}
             year={Movie.YEAR}
-            onMovieTitleClick={onTitleClick}
           />
         </Provider>,
         {

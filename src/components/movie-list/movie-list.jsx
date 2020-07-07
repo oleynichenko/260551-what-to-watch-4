@@ -1,5 +1,6 @@
 import MovieCard from '../movie-card/movie-card';
 import {MOVIE_LAUNCH_DELAY} from "../../constants";
+import {shortMovieType} from "../../types";
 
 class MoviesList extends React.PureComponent {
   constructor(props) {
@@ -56,23 +57,9 @@ class MoviesList extends React.PureComponent {
 }
 
 MoviesList.propTypes = {
-  movies: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string.number,
-        title: PropTypes.string.isRequired,
-        image: PropTypes.string.isRequired,
-        preview: PropTypes.string.isRequired,
-        genres: PropTypes.arrayOf(PropTypes.string).isRequired,
-      })
-  ),
+  movies: PropTypes.arrayOf(shortMovieType).isRequired,
   onItemAction: PropTypes.func.isRequired,
-  activeItem: PropTypes.shape({
-    id: PropTypes.string.number,
-    title: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    preview: PropTypes.string.isRequired,
-    genres: PropTypes.arrayOf(PropTypes.string).isRequired,
-  })
+  activeItem: shortMovieType
 };
 
 export default MoviesList;

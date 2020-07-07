@@ -1,4 +1,5 @@
 import VideoPlayer from "@components/video-player/video-player";
+import {shortMovieType} from "../../types";
 
 const MovieCard = (props) => {
   const {
@@ -32,12 +33,7 @@ const MovieCard = (props) => {
 };
 
 MovieCard.propTypes = {
-  movie: PropTypes.shape({
-    id: PropTypes.string.number,
-    title: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    preview: PropTypes.string.isRequired,
-  }),
+  movie: shortMovieType.isRequired,
   onMovieCardMouseEnter: PropTypes.func.isRequired,
   onMovieCardMouseLeave: PropTypes.func.isRequired,
   isVideoPlaying: PropTypes.bool.isRequired

@@ -1,6 +1,7 @@
 import Main from "@components/main/main.connect";
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import MoviePage from "@components/movie-page/movie-page";
+import movies from '../../mocks/films';
 
 class App extends React.PureComponent {
   constructor(props) {
@@ -25,7 +26,7 @@ class App extends React.PureComponent {
             {this._renderApp()}
           </Route>
           <Route exact path="/dev">
-            <MoviePage />
+            <MoviePage movie={movies[2]}/>
           </Route>
         </Switch>
       </BrowserRouter>

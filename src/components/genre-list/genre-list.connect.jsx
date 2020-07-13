@@ -1,16 +1,18 @@
-import {ActionCreator} from "../../store/actions";
 import {connect} from "react-redux";
 import GenreList from "@components/genre-list/genre-list";
+import {getMovieGenres} from "../../reducer/data/selectors";
+import {getActiveGenre} from "../../reducer/movies/selectors";
+import {ActionCreator as MoviesActionCreator} from "../../reducer/movies/movies";
 
 const mapStateToProps = (state) => ({
-  genres: state.genres,
-  activeGenre: state.activeGenre
+  genres: getMovieGenres(state),
+  activeGenre: getActiveGenre(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onGenreChange(genre) {
-    dispatch(ActionCreator.setActiveGenre(genre));
-    dispatch(ActionCreator.getFilteredMovies());
+    dispatch(MoviesActionCreator.setActiveGenre(genre));
+    dispatch(MoviesActionCreator.resetMoviesLimit(genre));
   },
 });
 

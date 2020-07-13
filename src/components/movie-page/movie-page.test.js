@@ -5,7 +5,7 @@ const movie = {
   title: `Macbeth`,
   genres: [`Documentary`, `Kids & Family`, `Romance`],
   releaseDate: 2015,
-  runTime: `2h 0m`,
+  runTime: 123,
   cover: `img/bg-the-grand-budapest-hotel.jpg`,
   poster: `img/the-grand-budapest-hotel-poster.jpg`,
   image: `img/macbeth.jpg`,

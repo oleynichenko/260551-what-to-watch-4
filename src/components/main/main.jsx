@@ -1,20 +1,21 @@
 import MoviesList from "@components/movie-list/movie-list.connect";
 import GenreList from "@components/genre-list/genre-list.connect";
 import withActiveItem from "../../hocs/with-active-item/with-active-item";
+import {shortMovieType} from "../../types";
 
 const MoviesListWrapped = withActiveItem(MoviesList);
 
 const Main = (props) => {
   const {
-    title,
-    year,
-    genre
+    titleMovie,
+    isShowMore,
+    onShowMoreClick
   } = props;
 
   return <>
     <section className="movie-card">
       <div className="movie-card__bg">
-        <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel"/>
+        <img src={titleMovie.cover} alt={titleMovie.title}/>
       </div>
       <h1 className="visually-hidden">WTW</h1>
       <header className="page-header movie-card__head">
@@ -34,14 +35,13 @@ const Main = (props) => {
       <div className="movie-card__wrap">
         <div className="movie-card__info">
           <div className="movie-card__poster">
-            <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327"/>
+            <img src={titleMovie.poster} alt={titleMovie.title} width="218" height="327"/>
           </div>
           <div className="movie-card__desc">
-            <h2
-              className="movie-card__title">{title}</h2>
+            <h2 className="movie-card__title">{titleMovie.title}</h2>
             <p className="movie-card__meta">
-              <span className="movie-card__genre">{genre}</span>
-              <span className="movie-card__year">{year}</span>
+              <span className="movie-card__genre">{titleMovie.genres}</span>
+              <span className="movie-card__year">{titleMovie.releaseDate}</span>
             </p>
             <div className="movie-card__buttons">
               <button className="btn btn--play movie-card__button" type="button">
@@ -66,9 +66,16 @@ const Main = (props) => {
         <h2 className="catalog__title visually-hidden">Catalog</h2>
         <GenreList />
         <MoviesListWrapped />
-        <div className="catalog__more">
-          <button className="catalog__button" type="button">Show more</button>
-        </div>
+        {isShowMore &&
+          <div className="catalog__more">
+            <button
+              className="catalog__button"
+              type="button"
+              onClick={onShowMoreClick}
+            >Show more
+            </button>
+          </div>
+        }
       </section>
       <footer className="page-footer">
         <div className="logo">
@@ -87,9 +94,9 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  title: PropTypes.string.isRequired,
-  genre: PropTypes.string.isRequired,
-  year: PropTypes.number.isRequired
+  titleMovie: shortMovieType,
+  isShowMore: PropTypes.bool.isRequired,
+  onShowMoreClick: PropTypes.func.isRequired,
 };
 
 export default Main;

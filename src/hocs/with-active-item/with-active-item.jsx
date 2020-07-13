@@ -13,9 +13,10 @@ const withActiveItem = (Component) => {
     _setActiveItem(item) {
       if (item) {
         this.setState({activeItem: item});
-      } else {
-        this.setState({activeItem: null});
+        return;
       }
+
+      this.setState({activeItem: null});
     }
 
     render() {

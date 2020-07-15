@@ -7,7 +7,11 @@ import reducer from "./reducer/reducer";
 import {createAPI} from "./api";
 import {Operation as DataOperation} from "./reducer/data/data";
 
-const api = createAPI();
+const onUnauthorized = () => {
+  store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
+};
+
+const api = createAPI(onUnauthorized);
 
 const store = createStore(
     reducer,
@@ -18,6 +22,7 @@ const store = createStore(
     )
 );
 
+// TODO move somewhere due to pr10 remarks
 store.dispatch(DataOperation.loadMovies());
 store.dispatch(DataOperation.loadTitleMovie());
 

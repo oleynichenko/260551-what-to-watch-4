@@ -3,6 +3,7 @@ import {Operation as DataOperation} from "../../reducer/data/data";
 import {Operation as UserOperation} from "../../reducer/user/user";
 import App from "@components/app/app";
 
+
 const mapDispatchToProps = (dispatch) => ({
   init() {
     dispatch(DataOperation.loadMovies());
@@ -10,5 +11,6 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(UserOperation.checkAuth());
   },
 });
+
 
 export default connect(null, mapDispatchToProps)(App);

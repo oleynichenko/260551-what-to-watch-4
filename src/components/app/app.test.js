@@ -127,12 +127,15 @@ describe(`AppComponent`, () => {
       MOVIES: {
         moviesLimit: 8,
         activeGenre: `All genres`,
+      },
+      USER: {
+        authorizationStatus: `AUTH`,
       }
     });
 
     const tree = renderer.create(
         <Provider store={store}>
-          <App />
+          <App init={()=>{}} />
         </Provider>,
         {
           createNodeMock: () => {

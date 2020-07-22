@@ -127,6 +127,9 @@ describe(`MainComponent`, () => {
       MOVIES: {
         moviesLimit: 8,
         activeGenre: `All genres`,
+      },
+      USER: {
+        authorizationStatus: `AUTH`,
       }
     });
 

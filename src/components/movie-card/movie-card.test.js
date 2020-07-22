@@ -1,4 +1,4 @@
-import MovieCard from "./movie-card.jsx";
+import MovieCard from "./movie-card";
 
 const movie = {
   id: 1,

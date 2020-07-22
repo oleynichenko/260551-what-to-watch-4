@@ -1,4 +1,4 @@
-import MoviesList from './movie-list.jsx';
+import MoviesList from './movie-list';
 
 const movies = [
   {

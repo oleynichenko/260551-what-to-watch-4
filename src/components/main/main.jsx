@@ -12,6 +12,7 @@ const Main = (props) => {
     titleMovie,
     isShowMore,
     onShowMoreClick,
+    changeMovieFavoriteStatus,
     location
   } = props;
 
@@ -45,10 +46,18 @@ const Main = (props) => {
                 </svg>
                 <span>Play</span>
               </button>
-              <button className="btn btn--list movie-card__button" type="button">
-                <svg viewBox="0 0 19 20" width="19" height="20">
-                  <use xlinkHref="#add"/>
-                </svg>
+              <button
+                className="btn btn--list movie-card__button"
+                type="button"
+                onClick={() => {
+                  changeMovieFavoriteStatus(titleMovie);
+                }}
+              >
+                {
+                  titleMovie.isFavorite
+                    ? <svg viewBox="0 0 18 14" width="18" height="14"><use xlinkHref="#in-list"/></svg>
+                    : <svg viewBox="0 0 19 20" width="19" height="20"><use xlinkHref="#add"/></svg>
+                }
                 <span>My list</span>
               </button>
             </div>
@@ -83,7 +92,8 @@ Main.propTypes = {
   onShowMoreClick: PropTypes.func.isRequired,
   location: PropTypes.shape({
     pathname: PropTypes.string.isRequired
-  })
+  }),
+  changeMovieFavoriteStatus: PropTypes.func.isRequired,
 };
 
 export default Main;

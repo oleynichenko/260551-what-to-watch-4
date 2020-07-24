@@ -7,5 +7,5 @@ export const BASE_URL = `https://4.react.pages.academy/wtw`;
 export const AppRoute = {
   MAIN: `/`,
   LOGIN: `/login`,
-  MYLIST: `/mylist`
+  MY_LIST: `/mylist`
 };

@@ -21,15 +21,9 @@ class App extends React.PureComponent {
     return (
       <BrowserRouter history={history}>
         <Switch>
-          <Route exact path={AppRoute.MAIN}>
-            <Main/>
-          </Route>
-          <Route exact path={AppRoute.LOGIN}>
-            <SignIn/>
-          </Route>
-          <Route exact path={AppRoute.MY_LIST}>
-            <MyList/>
-          </Route>
+          <Route exact path={AppRoute.MAIN} component={Main}/>
+          <Route exact path={AppRoute.LOGIN} component={SignIn}/>
+          <Route exact path={AppRoute.MY_LIST} component={MyList}/>
         </Switch>
       </BrowserRouter>
     );

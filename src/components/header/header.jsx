@@ -5,15 +5,18 @@ import {Link} from "react-router-dom";
 
 
 const Header = (props) => {
-  const _isAuthorized = (AuthorizationStatus.AUTH === props.authorizationStatus);
+  const {headerClass, authorizationStatus, pathname, children} = props;
+  const _isAuthorized = (AuthorizationStatus.AUTH === authorizationStatus);
+  const isMainPage = pathname === AppRoute.MAIN;
 
   return (
     <>
-      <header className="page-header movie-card__head">
-        <Logo isLight={false} isLinkActive={false}/>
+      <header className={`page-header ${headerClass}`}>
+        <Logo isLight={false} isLinkActive={!isMainPage}/>
+        {children}
         <div className="user-block">
           {_isAuthorized &&
-            <Link to={AppRoute.MYLIST}>
+            <Link to={AppRoute.MY_LIST}>
               <div className="user-block__avatar">
                 <img
                   src="img/avatar.jpg"
@@ -39,6 +42,12 @@ const Header = (props) => {
 
 Header.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
+  headerClass: PropTypes.string.isRequired,
+  pathname: PropTypes.string.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ])
 };
 
 

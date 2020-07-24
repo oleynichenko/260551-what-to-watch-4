@@ -11,7 +11,8 @@ const Main = (props) => {
   const {
     titleMovie,
     isShowMore,
-    onShowMoreClick
+    onShowMoreClick,
+    location
   } = props;
 
   return <>
@@ -20,7 +21,7 @@ const Main = (props) => {
         <img src={titleMovie.cover} alt={titleMovie.title}/>
       </div>
       <h1 className="visually-hidden">WTW</h1>
-      <Header />
+      <Header headerClass={`movie-card__head`} pathname={location.pathname}/>
       <div className="movie-card__wrap">
         <div className="movie-card__info">
           <div className="movie-card__poster">
@@ -80,6 +81,9 @@ Main.propTypes = {
   titleMovie: shortMovieType,
   isShowMore: PropTypes.bool.isRequired,
   onShowMoreClick: PropTypes.func.isRequired,
+  location: PropTypes.shape({
+    pathname: PropTypes.string.isRequired
+  })
 };
 
 export default Main;

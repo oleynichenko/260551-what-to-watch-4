@@ -1,8 +1,9 @@
-import {Route, Router, Switch} from 'react-router-dom';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Main from "@components/main/main.connect";
 import SignIn from "@components/sign-in/sign-in.connect";
 import {AppRoute} from "../../constants";
 import history from "../../history.js";
+import MyList from "@components/my-list/my-list";
 
 
 class App extends React.PureComponent {
@@ -18,7 +19,7 @@ class App extends React.PureComponent {
 
   render() {
     return (
-      <Router history={history}>
+      <BrowserRouter history={history}>
         <Switch>
           <Route exact path={AppRoute.MAIN}>
             <Main/>
@@ -26,11 +27,11 @@ class App extends React.PureComponent {
           <Route exact path={AppRoute.LOGIN}>
             <SignIn/>
           </Route>
-          <Route exact path={AppRoute.MYLIST}>
+          <Route exact path={AppRoute.MY_LIST}>
             <MyList/>
           </Route>
         </Switch>
-      </Router>
+      </BrowserRouter>
     );
   }
 }

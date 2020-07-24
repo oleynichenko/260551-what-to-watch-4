@@ -1,9 +1,9 @@
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {BrowserRouter, Redirect, Route, Switch} from 'react-router-dom';
 import Main from "@components/main/main.connect";
 import SignIn from "@components/sign-in/sign-in.connect";
 import {AppRoute} from "../../constants";
-import history from "../../history.js";
 import MyList from "@components/my-list/my-list";
+import {AuthorizationStatus} from "../../reducer/user/user";
 
 
 class App extends React.PureComponent {
@@ -18,12 +18,34 @@ class App extends React.PureComponent {
   }
 
   render() {
+    const {authorizationStatus} = this.props;
+
     return (
-      <BrowserRouter history={history}>
+      <BrowserRouter>
         <Switch>
           <Route exact path={AppRoute.MAIN} component={Main}/>
-          <Route exact path={AppRoute.LOGIN} component={SignIn}/>
-          <Route exact path={AppRoute.MY_LIST} component={MyList}/>
+          <Route
+            exact
+            path={AppRoute.LOGIN}
+            render={() => {
+              return (
+                authorizationStatus === AuthorizationStatus.AUTH
+                  ? <Redirect to={AppRoute.MAIN} />
+                  : <SignIn />
+              );
+            }}
+          />
+          <Route
+            exact
+            path={AppRoute.MY_LIST}
+            render={(props) => {
+              return (
+                authorizationStatus === AuthorizationStatus.NO_AUTH
+                  ? <Redirect to={AppRoute.LOGIN} />
+                  : <MyList location={props.location}/>
+              );
+            }}
+          />
         </Switch>
       </BrowserRouter>
     );
@@ -31,7 +53,8 @@ class App extends React.PureComponent {
 }
 
 App.propTypes = {
-  init: PropTypes.func.isRequired
+  init: PropTypes.func.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
 };
 
 

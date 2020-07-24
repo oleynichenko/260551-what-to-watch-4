@@ -1,5 +1,5 @@
 import MovieCard from '../movie-card/movie-card';
-import {MOVIE_LAUNCH_DELAY} from "../../constants";
+import {MOVIE_LAUNCH_DELAY} from "@constants";
 import {shortMovieType} from "../../types";
 
 class MoviesList extends React.PureComponent {

@@ -1,9 +1,9 @@
 import {BrowserRouter, Redirect, Route, Switch} from 'react-router-dom';
 import Main from "@components/main/main.connect";
 import SignIn from "@components/sign-in/sign-in.connect";
-import {AppRoute} from "../../constants";
+import {AppRoute} from "@constants";
 import MyList from "@components/my-list/my-list";
-import {AuthorizationStatus} from "../../reducer/user/user";
+import {AuthorizationStatus} from "@reducer/user/user";
 
 
 class App extends React.PureComponent {

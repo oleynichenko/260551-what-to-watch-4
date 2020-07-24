@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
 import SignIn from "@components/sign-in/sign-in";
-import {Operation as UserOperation} from "../../reducer/user/user";
+import {Operation as UserOperation} from "@reducer/user/user";
 
 
 const mapDispatchToProps = (dispatch) => ({

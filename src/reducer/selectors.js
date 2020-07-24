@@ -1,4 +1,4 @@
-import {ALL_GENRES} from "../constants";
+import {ALL_GENRES} from "@constants";
 import {createSelector} from "reselect";
 import {getActiveGenre, getMoviesLimit} from "./movies/selectors";
 import {getMovies} from "./data/selectors";

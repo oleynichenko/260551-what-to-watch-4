@@ -1,6 +1,6 @@
-import {AuthorizationStatus} from "../../reducer/user/user";
+import {AuthorizationStatus} from "@reducer/user/user";
 import Logo from "@components/logo/logo";
-import {AppRoute} from "../../constants";
+import {AppRoute} from "@constants";
 import {Link} from "react-router-dom";
 
 

@@ -1,4 +1,4 @@
-import {getAuthorizationStatus} from "../../reducer/user/selectors";
+import {getAuthorizationStatus} from "@reducer/user/selectors";
 import {connect} from "react-redux";
 import Header from "@components/header/header";
 

@@ -3,9 +3,9 @@ import {createStore, applyMiddleware, compose} from "redux";
 import thunk from "redux-thunk";
 import {Provider} from "react-redux";
 import App from '@components/app/app.connect';
-import reducer from "./reducer/reducer";
+import reducer from "@reducer/reducer";
 import {createAPI} from "./api";
-import {ActionCreator, AuthorizationStatus} from "./reducer/user/user";
+import {ActionCreator, AuthorizationStatus} from "@reducer/user/user";
 
 const onUnauthorized = () => {
   store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));

@@ -1,4 +1,4 @@
-import {ALL_GENRES, MOVIES_LIMIT} from "../../constants";
+import {ALL_GENRES, MOVIES_LIMIT} from "@constants";
 import {extend} from "../../utils";
 
 const initialState = {

@@ -1,5 +1,5 @@
 import NameSpace from "../name-space.js";
-import {ALL_GENRES} from "../../constants";
+import {ALL_GENRES} from "@constants";
 
 const NAME_SPACE = NameSpace.DATA;
 

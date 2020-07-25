@@ -1,6 +1,7 @@
 import Main from "./main";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
+import {BrowserRouter} from "react-router-dom";
 
 const mockStore = configureStore([]);
 
@@ -135,11 +136,15 @@ describe(`MainComponent`, () => {
 
     const tree = renderer.create(
         <Provider store={store}>
-          <Main
-            titleMovie={movies[0]}
-            isShowMore={true}
-            onShowMoreClick={() => {}}
-          />,
+          <BrowserRouter>
+            <Main
+              titleMovie={movies[0]}
+              isShowMore={true}
+              onShowMoreClick={() => {}}
+              pathname={`/`}
+              changeMovieFavoriteStatus={() => {}}
+            />,
+          </BrowserRouter>
         </Provider>,
         {
           createNodeMock: () => {

@@ -23,7 +23,15 @@ class App extends React.PureComponent {
     return (
       <BrowserRouter>
         <Switch>
-          <Route exact path={AppRoute.MAIN} component={Main}/>
+          <Route
+            exact
+            path={AppRoute.MAIN}
+            render={(props) => {
+              return (
+                <Main pathname={props.location.pathname}/>
+              );
+            }}
+          />
           <Route
             exact
             path={AppRoute.LOGIN}
@@ -42,7 +50,7 @@ class App extends React.PureComponent {
               return (
                 authorizationStatus === AuthorizationStatus.NO_AUTH
                   ? <Redirect to={AppRoute.LOGIN} />
-                  : <MyList location={props.location}/>
+                  : <MyList pathname={props.location.pathname}/>
               );
             }}
           />

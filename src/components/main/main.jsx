@@ -13,7 +13,7 @@ const Main = (props) => {
     isShowMore,
     onShowMoreClick,
     changeMovieFavoriteStatus,
-    location
+    pathname
   } = props;
 
   return <>
@@ -22,7 +22,7 @@ const Main = (props) => {
         <img src={titleMovie.cover} alt={titleMovie.title}/>
       </div>
       <h1 className="visually-hidden">WTW</h1>
-      <Header headerClass={`movie-card__head`} pathname={location.pathname}/>
+      <Header headerClass={`movie-card__head`} pathname={pathname}/>
       <div className="movie-card__wrap">
         <div className="movie-card__info">
           <div className="movie-card__poster">
@@ -90,9 +90,7 @@ Main.propTypes = {
   titleMovie: shortMovieType,
   isShowMore: PropTypes.bool.isRequired,
   onShowMoreClick: PropTypes.func.isRequired,
-  location: PropTypes.shape({
-    pathname: PropTypes.string.isRequired
-  }),
+  pathname: PropTypes.string.isRequired,
   changeMovieFavoriteStatus: PropTypes.func.isRequired,
 };
 

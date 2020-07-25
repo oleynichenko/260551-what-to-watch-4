@@ -2,6 +2,7 @@ import MockAdapter from "axios-mock-adapter";
 import {createAPI} from "../../api.js";
 import {ActionType, reducer, Operation} from "./data";
 import {transformMovie} from "../../adapters/movies";
+import {extend} from "../../utils";
 
 const api = createAPI(() => {});
 
@@ -44,6 +45,20 @@ describe(`Data reducer`, () => {
       payload: movies,
     })).toEqual({movies, titleMovie: {}});
   });
+
+  it(`should update movies by updating movie favorite status`, () => {
+    const transformedMovies = movies.map(transformMovie);
+    const movie = transformedMovies[0];
+    const updatedMovie = extend(movie, {isFavorite: !movie.isFavorite});
+
+    expect(reducer({
+      movies: transformedMovies,
+      titleMovie: {}
+    }, {
+      type: ActionType.UPDATE_MOVIE_FAVORITE_STATUS,
+      payload: updatedMovie
+    })).toEqual({movies: [updatedMovie], titleMovie: {}});
+  });
 });
 
 describe(`Data operation`, () => {
@@ -51,7 +66,7 @@ describe(`Data operation`, () => {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
     const questionLoader = Operation.loadMovies();
-    const transformedMovies = movies.map((movie) => transformMovie(movie));
+    const transformedMovies = movies.map(transformMovie);
 
     apiMock
       .onGet(`/films`)
@@ -83,6 +98,28 @@ describe(`Data operation`, () => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionType.LOAD_TITLE_MOVIE,
+          payload: transformedMovie,
+        });
+      });
+  });
+
+  it(`should make a correct API call to /favorite/:film/:status`, function () {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const movie = movies[0];
+    const updateMovie = Operation.updateMovieFavoriteStatus(movie);
+    const transformedMovie = transformMovie(movie);
+    const newFavoriteStatus = Number(!transformedMovie.isFavorite);
+
+    apiMock
+      .onPost(`/favorite/${transformedMovie.id}/${newFavoriteStatus}`)
+      .reply(200, movie);
+
+    return updateMovie(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.UPDATE_MOVIE_FAVORITE_STATUS,
           payload: transformedMovie,
         });
       });

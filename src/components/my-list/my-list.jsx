@@ -1,12 +1,13 @@
 import Header from "@components/header/header.connect";
 import Footer from "@components/footer/footer";
 
+
 const MyList = (props) => {
-  const {location} = props;
+  const {pathname} = props;
 
   return (
     <div className="user-page">
-      <Header headerClass={`user-page__head`} pathname={location.pathname}>
+      <Header headerClass={`user-page__head`} pathname={pathname}>
         <h1 className="page-title user-page__title">My list</h1>
       </Header>
       <section className="catalog">
@@ -102,9 +103,8 @@ const MyList = (props) => {
 };
 
 MyList.propTypes = {
-  location: PropTypes.shape({
-    pathname: PropTypes.string.isRequired
-  })
+  pathname: PropTypes.string.isRequired
 };
+
 
 export default MyList;

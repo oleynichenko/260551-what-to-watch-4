@@ -2,7 +2,7 @@
 
 exports[`Header should match snapshot 1`] = `
 <header
-  className="page-header movie-card__head"
+  className="page-header "
 >
   <div
     className="logo"
@@ -28,18 +28,26 @@ exports[`Header should match snapshot 1`] = `
     </a>
   </div>
   <div
+    className="children-component"
+  />
+  <div
     className="user-block"
   >
-    <div
-      className="user-block__avatar"
+    <a
+      href="/mylist"
+      onClick={[Function]}
     >
-      <img
-        alt="User avatar"
-        height="63"
-        src="img/avatar.jpg"
-        width="63"
-      />
-    </div>
+      <div
+        className="user-block__avatar"
+      >
+        <img
+          alt="User avatar"
+          height="63"
+          src="img/avatar.jpg"
+          width="63"
+        />
+      </div>
+    </a>
   </div>
 </header>
 `;

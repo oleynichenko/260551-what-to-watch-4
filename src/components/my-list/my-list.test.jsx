@@ -1,6 +1,7 @@
-import App from "./app";
-import {Provider} from "react-redux";
+import MyList from "@components/my-list/my-list";
 import configureStore from "redux-mock-store";
+import {Provider} from "react-redux";
+import {BrowserRouter} from "react-router-dom";
 
 const movies = [
   {
@@ -115,38 +116,36 @@ const movies = [
   },
 ];
 
+const pathname = `/`;
 const mockStore = configureStore([]);
 
-describe(`AppComponent`, () => {
-  it(`should render App`, () => {
-    const store = mockStore({
-      DATA: {
-        movies,
-        titleMovie: movies[0]
-      },
-      MOVIES: {
-        moviesLimit: 8,
-        activeGenre: `All genres`,
-      },
-      USER: {
-        authorizationStatus: `AUTH`,
-      }
-    });
-
-    const tree = renderer.create(
-        <Provider store={store}>
-          <App
-            init={()=>{}}
-            authorizationStatus={`AUTH`}
-          />
-        </Provider>,
-        {
-          createNodeMock: () => {
-            return {};
-          }
-        }
-    ).toJSON();
-
-    expect(tree).toMatchSnapshot();
+it(`should render MyList component`, () => {
+  const store = mockStore({
+    DATA: {
+      movies,
+      titleMovie: movies[0]
+    },
+    MOVIES: {
+      moviesLimit: 8,
+      activeGenre: `All genres`,
+    },
+    USER: {
+      authorizationStatus: `AUTH`,
+    }
   });
+
+  const tree = renderer.create(
+      <Provider store={store}>
+        <BrowserRouter>
+          <MyList pathname={pathname} />
+        </BrowserRouter>
+      </Provider>,
+      {
+        createNodeMock: () => {
+          return {};
+        }
+      }
+  ).toJSON();
+
+  expect(tree).toMatchSnapshot();
 });
